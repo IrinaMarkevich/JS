@@ -1,17 +1,14 @@
-"use strict";
-let  getGender = require('./getGender');
+const getGender = require('./getGender')
 
-function getOldCats(list, n) {
- 
- let ageCats = getGender( list ); 
+function getOldCats (list, n) {
+  const ageCats = getGender(list)
 
- ageCats.sort( function(a, b) {
-     return b.age - a.age
- })
-  for (let i = ageCats.length - 1 ; i >= n; i--){
-    ageCats.splice(i, 1);
+  ageCats.sort(function (a, b) {
+    return b.age - a.age
+  })
+  for (let i = ageCats.length - 1; i >= n; i--) {
+    ageCats.splice(i, 1)
   }
-  return ageCats;
- 
+  return ageCats
 }
-module.exports = getOldCats;  
+module.exports = getOldCats

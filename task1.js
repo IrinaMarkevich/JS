@@ -1,7 +1,5 @@
-"use strict";
+const list = [1, 2, 3, 4, 5]
 
-let list = [1, 2, 3, 4, 5];
+const pick = require('./pick')
 
-let  pick = require('./pick');
-
-console.log(pick(list));
+console.log(pick(list))

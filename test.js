@@ -1,176 +1,92 @@
-let pick = require('./pick.js');
+const chai = require('chai')
+const assert = chai.assert
+const pick = require('./pick')
+const catFactory = require('./catFactory')
+const catsGroupGenerate = require('./catsGroupGenerate')
+const getGender = require('./getGender')
+const getName = require('./getName')
+const getOldCats = require('./getOldCats')
+const getYoungCats = require('./getYoungCats')
+const nameStats = require('./nameStats')
+const catFactoryMod = require('./catFactoryMod')
+const catsGroupGenerateMod = require('./catsGroupGenerateMod')
 
-describe('tests', function() {
- describe('pick', function() {
-   it('pick', function(){
-   let list = [1, 2, 3, 4, 5];
-   let total;
-   let result = pick(list);
-
-   for ( i = 0; i < list.length; i++) {
-      if (result == list[i]){
-       total = true;
-      }
-    }
-   if (total != true) {
-     throw new Error(`No such result on array`);
-    }
-  });
- });
-});
-
-let catFactory = require('./catFactory');
-describe('tests', function() {
- describe('catFactory', function() {
-   it('catFactory', function(){
-   let result = catFactory();
-   if (result.hasOwnProperty('name') != true){
-     throw new Error(`No name`);
-    }
-   if (result.hasOwnProperty('age') != true){
-     throw new Error(`No age `);
-    }
-   if (result.hasOwnProperty('gender') != true){
-     throw new Error(`No gender`);
-    }
-   if (result.hasOwnProperty('legsCount') != true){
-     throw new Error(`No legsCount`);
-    }
-   if (result.hasOwnProperty('tailLength') != true){
-     throw new Error(`No tailLength`);
-    }
-  });
- });
-});
-
-let catsGroupGenerate = require('./catsGroupGenerate');
-describe('tests', function() {
- describe('catsGroupGenerate', function() {
-   it('catsGroupGenerate', function(){
-     let n = 15;
-     let rezulte = catsGroupGenerate(n);
-     if (n != rezulte.length){
-       throw new Error(`No count n`);
-      }
-    });
-  });
-});
-
-let getGender = require('./getGender');
-describe('tests', function() {
- describe('getGender', function() {
-   it('getGender', function(){
-     let list = catsGroupGenerate(15);
-     let result = getGender(list);
-     for(let i=0; i<result.length; i++){
-       if(result[i].gender != "m"){
-         throw new Error(`No "m"`);
-        }
-      }
-    });
-  });
-});
-
-let getName = require('./getName');
-describe('tests', function() {
- describe('getName', function() {
-   it('getName', function(){
-     let list = catsGroupGenerate(15);
-     let result = getName(list);
-     for(let i = 0; i < result.length; i++) {
-       if(result[i] != "Murka" && result[i] != "Murzik" && result[i] != "Vasily"){
-         throw new Error(`No name`);
-        }
-      }
-
-    });
-  });
-});
-
-let getOldCats = require('./getOldCats');
-describe('tests', function() {
- describe('getOldCats', function() {
-   it('getOldCats', function(){
-     let n = 5;
-     let list = catsGroupGenerate(15);
-     let rezulte = getOldCats(list, n);
-     if (n != rezulte.length){
-       throw new Error(`No Oldov`);
-      }
-    });
-  });
+it('Function pick returns a number', () => {
+  assert.isNumber(pick([1, 2, 3, 4, 5]), '')
 })
 
-let getYoungCats = require('./getYoungCats');
-describe('tests', function() {
- describe('getYoungCats ', function() {
-   it('getYoungCats', function(){
-     let n = 5;
-     let list = catsGroupGenerate(15);
-     let rezulte = getYoungCats(list, n);
-     if (n != rezulte.length){
-       throw new Error(`No YoungCats`);
-      }
-    });
-  });
+it('Function catFactory returns a Object', () => {
+  assert.isObject(catFactory(), '')
 })
 
-let nameStats = require('./nameStats');
-describe('tests', function() {
- describe('nameStats' , function() {
-   it('nameStats', function(){
-     let list = catsGroupGenerate(15);
-     let result = nameStats(list);
+it('Function catsGroupGenerate returns a Array', () => {
+  assert.isArray(catsGroupGenerate(5), '')
+})
 
-     if (result.hasOwnProperty('Murzik') != true){
-       throw new Error(`No Murzik`);
-      }
-     if (result.hasOwnProperty('Murka') != true){
-       throw new Error(`No Murka `);
-      }
-     if (result.hasOwnProperty('Vasily') != true){
-       throw new Error(`No Vasily`);
-      }
+it('Function getGender returns a Array', () => {
+  assert.isArray(getGender(catsGroupGenerate(5)), '')
+})
 
-    });
-  });
-});
+it('Function getGender returns a "m" ', () => {
+  const arr = getGender(catsGroupGenerate(5))
+  for (let i = 0; i < arr.length; i++) {
+    assert.equal(arr[i].gender, 'm', '')
+  }
+})
 
-let catFactoryMod = require('./catFactoryMod');
-describe('tests', function() {
- describe('catFactoryMod ', function() {
-   it('catFactoryMod', function(){
-     let value = 7;
-     let prop = "age"
-     let list = catFactoryMod( prop, 7);
+it('Function getName returns a Array', () => {
+  assert.isArray(getName(catsGroupGenerate(5)), '')
+})
 
-     for ( let key in list ){
-       if( key == prop ){
-         if (list[key] != value){
-           throw new Error(`No`);
-          }
-        }
-      }
-    });
-  });
-});
+it('Function getName returns a name ', () => {
+  const arr = getName(catsGroupGenerate(5))
+  let isRight = false
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === 'Murka' || arr[i] === 'Murzik' || arr[i] === 'Vasily') {
+      isRight = true
+    }
+  }
+  assert.isTrue(isRight, '')
+})
 
-let catsGroupGenerateMod = require('./catsGroupGenerateMod');
-describe('tests', function() {
- describe('catsGroupGenerateMod ', function() {
-   it('catsGroupGenerateMod', function(){
-     let value = 7;
-     let prop = "age"
-     let list = catsGroupGenerateMod(15, prop, 7);
-     for(i = 0; i < list.length; i++) {
-       for ( let key in list[i] ){
-         if( key == prop ){
-           if (list[i][key] != value){
-             throw new Error(`No`);
-            }
-          }
-        }
-      }
-    });
-  });
-});
+it('Function getOldCats returns a Array', () => {
+  assert.isArray(getOldCats(catsGroupGenerate(5), 2), '')
+})
+
+it('Function getOldCats returns 2 elements', () => {
+  const arr = getOldCats(catsGroupGenerate(100), 2)
+  assert.equal(arr.length, 2, '')
+})
+
+it('Function getYoungCats returns a Array', () => {
+  assert.isArray(getYoungCats(catsGroupGenerate(5), 2), '')
+})
+
+it('Function getYoungCats returns 2 elements', () => {
+  const arr = getYoungCats(catsGroupGenerate(100), 2)
+  assert.equal(arr.length, 2, '')
+})
+
+it('Function nameStats returns a Object', () => {
+  assert.isObject(nameStats(catsGroupGenerate(5)), '')
+})
+
+it('Function catFactoryMod returns a Object', () => {
+  assert.isObject(catFactoryMod('age', 7), '')
+})
+
+it('Function catFactoryMod returns a Object (age: 7)', () => {
+  const obj = catFactoryMod('age', 7)
+  assert.equal(obj.age, 7, '')
+})
+
+it('Function catsGroupGenerateMod returns a Array', () => {
+  assert.isArray(catsGroupGenerateMod(15, 'age', 7), '')
+})
+
+it('Function catsGroupGenerateMod returns a Array (Object {age; 7})', () => {
+  const arr = catsGroupGenerateMod(15, 'age', 7)
+  for (let i = 0; i < arr.length; i++) {
+    assert.equal(arr[i].age, 7, '')
+  }
+})

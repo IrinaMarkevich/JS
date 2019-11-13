@@ -1,7 +1,6 @@
-"use strict";
 
-function pick(list) {
- let i = Math.trunc(Math.random() * (list.length));
- return list[i];
+function pick (list) {
+  const i = Math.trunc(Math.random() * list.length)
+  return list[i]
 }
-module.exports = pick;
+module.exports = pick

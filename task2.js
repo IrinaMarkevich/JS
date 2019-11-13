@@ -1,5 +1,2 @@
-"use strict";
-
-let  catFactory = require('./catFactory');
-console.log( catFactory() );
-
+const catFactory = require('./catFactory')
+console.log(catFactory())

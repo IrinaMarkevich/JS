@@ -1,16 +1,11 @@
-"use strict";
+const catFactory = require('./catFactory')
 
-let  catFactory = require('./catFactory');
+function catsGroupGenerate (n) {
+  const catsGroup = []
+  for (let i = 0; i < n; i++) {
+    catsGroup[i] = catFactory()
+  }
 
-function catsGroupGenerate(n) {
-
- let catsGroup = [];
-
- for (let i = 0; i < n; i++) {
- 
- catsGroup [i] = catFactory();
- }
-
- return catsGroup;
- }
-module.exports = catsGroupGenerate;
+  return catsGroup
+}
+module.exports = catsGroupGenerate

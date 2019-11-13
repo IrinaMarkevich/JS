@@ -4,14 +4,21 @@
   "description": "",
   "main": "catFactory.js",
   "dependencies": {
-  "webpack": "^4.41.2"
+    "chai": "^4.2.0",
+    "webpack": "^4.41.2"
   },
   "devDependencies": {
-  "mocha": "^6.2.2"
+    "eslint": "^6.6.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "mocha": "^6.2.2"
   },
   "scripts": {
-  "mocha": "mocha —watch",
-  "test": "mocha"
+    "mocha": "mocha —watch",
+    "test": "mocha"
   },
   "author": "",
   "license": "ISC"
