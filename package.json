@@ -5,6 +5,7 @@
   "main": "catFactory.js",
   "dependencies": {
     "chai": "^4.2.0",
+    "request": "^2.88.0",
     "webpack": "^4.41.2"
   },
   "devDependencies": {
